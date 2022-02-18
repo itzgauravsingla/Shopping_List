@@ -17,7 +17,14 @@ function List1(ctmSrv)
     list1.items = srv.getItems();
     list1.addItem = function()
     {
-        srv.addItem(list1.name, list1.quant);
+        try
+        {
+            srv.addItem(list1.name, list1.quant);
+        }
+        catch(error)
+        {
+            list1.error = error.message;
+        }
     }
 
     list1.delItem = function(index)
@@ -61,19 +68,27 @@ function Srv(maxItem)
     };
     srv.addItem = function(name, quant)
     {
-        if((maxItem == undefined) || ((maxItem != undefined) 
-        && items.length < maxItem))
+        if(name != undefined && quant != undefined)
         {
-            var tmp = {
-                name: name,
-                quant: quant
-            };
-            items.push(tmp);
+            if((maxItem == undefined) || ((maxItem != undefined) 
+            && items.length < maxItem))
+            {
+                var tmp = {
+                    name: name,
+                    quant: quant
+                };
+                items.push(tmp);
+            }
+            else
+            {
+                throw new Error ("Max items " + maxItem + " exceeds");
+            }
         }
         else
         {
-            throw new Error ("Max items " + maxItem + " exceeds");
+            throw new Error ("Enter the values correctly");
         }
+        
     };
     srv.delItem = function(index)
     {
