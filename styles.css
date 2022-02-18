@@ -1,0 +1,12 @@
+h1
+{
+    text-align: center;
+}
+
+div {
+    text-align: center;
+    line-height: 2rem;
+    width: 40%;
+    padding: 10px;
+    float: left;
+}
