@@ -1,42 +1,48 @@
 <html>
-    <head>
-        <title>Shopping List</title>
+  <head>
+    <title>Shopping List</title>
 
-        <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
 
-        <!-- AngularJS -->
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <!-- AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
 
-        <script src="script.js" defer></script>
-    </head>
+    <script src="services.js" defer></script>
+  </head>
 
-    <body ng-app="shoppingApp" ng-controller="appController as app">
-        <h1>Shopping List</h1>
-        <div ng-controller="list1Controller as list1">
-            <h3>List 1</h3>
-            <input placeholder="name" ng-model="list1.name">
-            <input placeholder="quantity" min="0" ng-model="list1.quant">
-            <br/><br/>
-            <button ng-click="list1.addItem()">addItem</button>
-            <ol>
-                <li ng-repeat="item in list1.items">{{ item.quant }} of {{ item.name }}
-                    <button style="margin-left:10px" ng-click="list1.delItem($index)">deleteItem</button>
-                </li>
-            </ol>
-            <p>Error: {{ list1.error }}</p>
-        </div>
-        <div class="fl" ng-controller="list2Controller as list2">
-            <h3>List 2 (Max items are 3)</h3>
-            <input placeholder="name" ng-model="list2.name">
-            <input placeholder="quantity" min="0" ng-model="list2.quant">
-            <br/><br/>
-            <button ng-click="list2.addItem()">addItem</button>
-            <ol>
-                <li ng-repeat="item in list2.items">{{ item.quant }} of {{ item.name }}
-                    <button style="margin-left:10px" ng-click="list2.delItem($index)">deleteItem</button>
-                </li>
-            </ol>
-            <p>Error: {{ list2.error }}</p>
-        </div>
-    </body>
+  <body ng-app="shoppingApp" ng-controller="appController as app">
+    <h1>Shopping List</h1>
+    <div ng-controller="list1Controller as list1">
+      <h3>List 1</h3>
+      <input placeholder="name" ng-model="list1.name" />
+      <input placeholder="quantity" min="0" ng-model="list1.quant" />
+      <br /><br />
+      <button ng-click="list1.addItem()">addItem</button>
+      <ol>
+        <li ng-repeat="item in list1.items">
+          {{ item.quant }} of {{ item.name }}
+          <button style="margin-left: 10px" ng-click="list1.delItem($index)">
+            deleteItem
+          </button>
+        </li>
+      </ol>
+      <p ng-if="list1.error">Error: {{ list1.error }}</p>
+    </div>
+    <div class="fl" ng-controller="list2Controller as list2">
+      <h3>List 2 (Max items are 3)</h3>
+      <input placeholder="name" ng-model="list2.name" />
+      <input placeholder="quantity" min="0" ng-model="list2.quant" />
+      <br /><br />
+      <button ng-click="list2.addItem()">addItem</button>
+      <ol>
+        <li ng-repeat="item in list2.items">
+          {{ item.quant }} of {{ item.name }}
+          <button style="margin-left: 10px" ng-click="list2.delItem($index)">
+            deleteItem
+          </button>
+        </li>
+      </ol>
+      <p ng-if="list2.error">Error: {{ list2.error }}</p>
+    </div>
+  </body>
 </html>
