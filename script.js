@@ -50,7 +50,7 @@ function Srv(maxItem) {
     return items;
   };
   srv.addItem = function (name, quant) {
-    if (name != (undefined || "") && quant != (undefined || "")) {
+    if (name != undefined && quant != undefined && name != "" && quant != "") {
       if (
         maxItem == undefined ||
         (maxItem != undefined && items.length < maxItem)
