@@ -1,12 +1,12 @@
 var myApp = angular.module("shoppingApp", []);
 myApp.controller("appController", [ctrl]);
-myApp.controller("list1Controller", ["$timeout", "ctmSrv", List1]);
-myApp.controller("list2Controller", ["$timeout", "ctmSrv", List2]);
-myApp.factory("ctmSrv", CustomFactoryFunction);
+myApp.controller("list1Controller", ["$rootScope", "$timeout", "ctmSrv", List1]);
+myApp.controller("list2Controller", ["$rootScope", "$timeout", "ctmSrv", List2]);
+myApp.factory("ctmSrv", ["$rootScope", CustomFactoryFunction]);
 
 function ctrl() {}
 
-function List1($timeout, ctmSrv) {
+function List1($rootScope, $timeout, ctmSrv) {
   var list1 = this;
   var srv = ctmSrv();
   list1.items = srv.getItems();
@@ -24,7 +24,7 @@ function List1($timeout, ctmSrv) {
   };
 }
 
-function List2($timeout, ctmSrv) {
+function List2($rootScope, $timeout, ctmSrv) {
   var list2 = this;
   var srv = ctmSrv(3);
   list2.items = srv.getItems();
@@ -43,7 +43,7 @@ function List2($timeout, ctmSrv) {
 }
 
 // Service factory function - Return Function
-function Srv(maxItem) {
+function Srv($rootScope, maxItem) {
   var srv = this;
   var items = [];
   srv.getItems = function () {
@@ -73,9 +73,9 @@ function Srv(maxItem) {
 }
 
 function CustomFactoryFunction() {
-  var factory = function (maxItem) {
-    return new Srv(maxItem);
+  var factory = function ($rootScope, maxItem) {
+    return new Srv($rootScope, maxItem);
   };
-  console.log(factory());
+  // console.log(factory());
   return factory;
 }
