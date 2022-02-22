@@ -7,13 +7,16 @@
     <!-- AngularJS -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
 
-    <script src="services.js" defer></script>
+    <script src="script.js" defer></script>
   </head>
 
-  <body ng-app="shoppingApp" ng-controller="appController as app">
+  <body ng-app="shoppingApp">
     <h1>Shopping List</h1>
     <div ng-controller="list1Controller as list1">
       <h3>List 1</h3>
+      <!-- {{ list1 }} -->
+      <button ng-click="list1.broadcast()">Broadcast</button>
+      <br/><br/>
       <input placeholder="name" ng-model="list1.name" />
       <input placeholder="quantity" min="0" ng-model="list1.quant" />
       <br /><br />
@@ -30,6 +33,9 @@
     </div>
     <div class="fl" ng-controller="list2Controller as list2">
       <h3>List 2 (Max items are 3)</h3>
+      <!-- {{ list2 }} -->
+      <button ng-click="list2.broadcast()">Broadcast</button>
+      <br/><br/>
       <input placeholder="name" ng-model="list2.name" />
       <input placeholder="quantity" min="0" ng-model="list2.quant" />
       <br /><br />
